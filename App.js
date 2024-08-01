@@ -80,7 +80,7 @@ function App() {
       screenTime: 90,
       tydeNumber: 2,
       tydeTime: 120,
-      image: './assets/images/4cut.png',
+      image: require('./assets/images/4cut.png'),
       title: 'inseng4cut',
       avatar: require('./assets/images/storyDefaultProfile.png'),
     },

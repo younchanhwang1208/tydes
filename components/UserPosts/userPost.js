@@ -68,7 +68,7 @@ const UserPost = (props) => {
                         <Text> Share </Text>
                     </TouchableOpacity>
                 </View>
-                <Text>{props.comments} comments</Text>
+                <Text>{props.comments}</Text>
             </View>
             </View>
         </View>
