@@ -51,6 +51,7 @@ const globalStyle = StyleSheet.create({
     userPostScrollContainer: {
         maxHeight: userPostHeight,
         backgroundColor: 'green',
+        marginBottom: 15,
     },
     postSmallBox: {
         width: 155,
@@ -81,7 +82,7 @@ const globalStyle = StyleSheet.create({
         backgroundColor: 'purple',
         marginRight: 3,
         borderRadius: 9,
-    }
+    },
 
 
 });

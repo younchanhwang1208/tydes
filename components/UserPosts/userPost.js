@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, Image, ScrollView, SectionList } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView, SectionList, TouchableOpacity } from "react-native";
 import globalStyle from "../../assets/styles/globalStyle";
 import UserPostScrollView from "./userPostScrollView";
 
@@ -52,11 +52,24 @@ const UserPost = (props) => {
                         </View>
                     ): null}
                     <View style={globalStyle.postBigBox}>
-
+                        
                     </View>
                 </ScrollView>
-                
-
+            <View style={styles.lineView}></View>
+            <View style={globalStyle.rowContainer}> 
+                <View style={{flexDirection: 'row'}}>
+                    <TouchableOpacity onPress={() => alert('Button 1 pressed')}>
+                        <Text> Aloha </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert('Button 2 pressed')}>
+                        <Text> Comment </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert('Button 3 pressed')}>
+                        <Text> Share </Text>
+                    </TouchableOpacity>
+                </View>
+                <Text>{props.comments} comments</Text>
+            </View>
             </View>
         </View>
 };
@@ -74,5 +87,16 @@ UserPost.propTypes={
     title: PropTypes.string,
     avatar: PropTypes.any,
 };
+
+const styles = StyleSheet.create({
+    lineView: {
+    borderStyle: "solid",
+    borderColor: '#e5e5e9',
+    borderTopWidth: 1,
+    flex: 1,
+    width: "100%",
+    height: 1,
+    }
+    });
 
 export default UserPost;
