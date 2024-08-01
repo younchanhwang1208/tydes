@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 import React, {useEffect, useState, useRef} from 'react';
 import {
-  FlatList, SafeAreaView, Text, TouchableOpacity, View, Dimensions
+  FlatList, SafeAreaView, Text, TouchableOpacity, View, Dimensions, ScrollView
 } from 'react-native';
 import { getFontFamily } from './assets/fonts/fonthelper';
 import Title from './components/title/title';
@@ -84,6 +84,20 @@ function App() {
       title: 'inseng4cut',
       avatar: require('./assets/images/storyDefaultProfile.png'),
     },
+    {
+    id: 2,
+    name: 'stella',
+    date: '24.01.18',
+    lastUpload: '20:36',
+    alohas: 10,
+    comments: 8,
+    screenTime: 90,
+    tydeNumber: 0,
+    tydeTime: 120,
+    image: null,
+    title: 'inseng4cut',
+    avatar: require('./assets/images/storyDefaultProfile.png'),
+  },
   ]
 
   const [screenData, setScreenData] = useState(Dimensions.get('screen'));
@@ -149,6 +163,7 @@ function App() {
       </TouchableOpacity>
     </View>
 {/* UserStories */}
+  <ScrollView style={{marginBottom: 60}}>
     <View style={globalStyle.userStoryContainer}>
       <FlatList 
       onEndReachedThreshold={0.5}
@@ -176,6 +191,7 @@ function App() {
         />
     </View>
   {/* UserPosts */}
+  <></>
   <View style={style.userPostContainer} >
     <FlatList 
       // onEndReachedThreshold={0.5}
@@ -209,12 +225,12 @@ function App() {
         />
   )}/>
   </View>
+  </ScrollView>
 
 
-
-    <Text style={{fontSize: 50, fontFamily: getFontFamily('Inter', '300')}}>
+    {/* <Text style={{fontSize: 50, fontFamily: getFontFamily('Inter', '300')}}>
       Hello World!
-    </Text>
+    </Text> */}
   </SafeAreaView>
   </NavigationContainer>
   );

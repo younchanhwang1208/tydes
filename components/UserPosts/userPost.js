@@ -4,8 +4,16 @@ import { View, Text, Image, ScrollView, SectionList } from "react-native";
 import globalStyle from "../../assets/styles/globalStyle";
 import UserPostScrollView from "./userPostScrollView";
 
+function timeIntToString(tydeTime) { //returns time into string
+    const tydeHour = Math.floor(tydeTime / 60)
+    const tydeMinute = tydeTime % 60
+    return `${tydeHour != 0 ? `${tydeHour}H ` : ''}${tydeMinute}M`
+}
+
 
 const UserPost = (props) => {
+    tydeTimeString = timeIntToString(props.tydeTime)
+    screenTimeString = timeIntToString(props.screenTime)
     return <View style={{flexDirection: 'row'}}>
             <View style={globalStyle.userPostContainer}>
                 <View style={{marginLeft: 10}}>
@@ -20,7 +28,7 @@ const UserPost = (props) => {
                     <View style={globalStyle.rowContainer}> 
                         <View style={{flexDirection: 'column'}}>
                             <Text style={globalStyle.postSubcategory}>Screentime</Text>
-                            <Text style={globalStyle.postMainData}>1h</Text>
+                            <Text style={globalStyle.postMainData}> {screenTimeString} </Text>
                         </View>
                         <View style={{flexDirection: 'column'}}>
                             <Text style={globalStyle.postSubcategory}>Tyde Ride</Text>
@@ -28,7 +36,7 @@ const UserPost = (props) => {
                         </View>
                         <View style={{flexDirection: 'column', marginRight: 60}}>
                         <Text style={globalStyle.postSubcategory}>Saved Time</Text>
-                        <Text style={globalStyle.postMainData}>3H</Text>
+                        <Text style={globalStyle.postMainData}>{tydeTimeString}</Text>
                         </View>
                     </View>
                 </View>
@@ -40,7 +48,7 @@ const UserPost = (props) => {
                     ): null}
                     {props.image ? (
                         <View style={globalStyle.postSmallBox}> 
-                            <Text>hi</Text>
+                            <Image source={props.image} style={{width: '100%', height: '100%', borderRadius: 9}}/>
                         </View>
                     ): null}
                     <View style={globalStyle.postBigBox}>
