@@ -6,15 +6,16 @@ const marginBottom = 6
 
 const globalStyle = StyleSheet.create({
     titleContainer: {
-        marginTop: 30,
+        marginVertical: 20,
         alignItems: 'center',
+        marginHorizontal: 10,
     },
     topRightContainer: {
         position: 'absolute',
+        top: 0,
+        right: 30,
         width: '100%',
         alignItems: 'flex-end',
-        marginTop: 30,
-        paddingRight: 10,
     },
     topLeftContainer: {
         position: 'absolute',
@@ -25,7 +26,6 @@ const globalStyle = StyleSheet.create({
     },
 
     icon: {
-        marginTop: 30,
         marginHorizontal: 20
     },
     userStoryContainer: {

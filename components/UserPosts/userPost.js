@@ -10,7 +10,6 @@ function timeIntToString(tydeTime) { //returns time into string
     return `${tydeHour != 0 ? `${tydeHour}H ` : ''}${tydeMinute}M`
 }
 
-
 const UserPost = (props) => {
     tydeTimeString = timeIntToString(props.tydeTime)
     screenTimeString = timeIntToString(props.screenTime)
@@ -52,23 +51,22 @@ const UserPost = (props) => {
                         </View>
                     ): null}
                     <View style={globalStyle.postBigBox}>
-                        
                     </View>
                 </ScrollView>
             <View style={styles.lineView}></View>
             <View style={globalStyle.rowContainer}> 
                 <View style={{flexDirection: 'row'}}>
-                    <TouchableOpacity onPress={() => alert('Button 1 pressed')}>
+                    <TouchableOpacity onPress={() => alert('Alohas are currently disabled')}>
                         <Text> Aloha </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => alert('Button 2 pressed')}>
+                    <TouchableOpacity onPress={() => alert('Comments are currently disabled')}>
                         <Text> Comment </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => alert('Button 3 pressed')}>
+                    <TouchableOpacity onPress={() => alert('Sharing is not available at the moment!')}>
                         <Text> Share </Text>
                     </TouchableOpacity>
                 </View>
-                <Text>{props.comments}</Text>
+                <Text>{props.comments} comments</Text>
             </View>
             </View>
         </View>
