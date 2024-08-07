@@ -16,58 +16,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeScreenNavigator from '../../components/navigator/HomeScreenNavigator';
 
 function HomeScreen(navigation) {
-  const userStories = [
-    {
-      id: 1,
-      fullName: 'LeBron James',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 2,
-      fullName: 'Kevin Durant',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 3,
-      fullName: 'Stephen Curry',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 4,
-      fullName: 'Giannis Antetokounmpo',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 5,
-      fullName: 'James Harden',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 6,
-      fullName: 'Kawhi Leonard',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 7,
-      fullName: 'Anthony Davis',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 8,
-      fullName: 'Luka Dončić',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 9,
-      fullName: 'Joel Embiid',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-    {
-      id: 10,
-      fullName: 'Nikola Jokić',
-      avatar: require('../../assets/images/storyDefaultProfile.png')
-    },
-  ]
 
   const userPosts = [
     {
@@ -116,10 +64,6 @@ function HomeScreen(navigation) {
 
   const [screenData, setScreenData] = useState(Dimensions.get('screen'));
 
-  const userStoriesPageSize = 4;
-  const [userStoriesCurrentPage, setUserStoriesCurrentPage] = useState(1);
-  const [userStoriesRenderedData, setUserStoriesRenderedData] = useState([]);
-  const [isLoadingUserStories, setIsLoadingUserStories] = useState(false);
 
   const userPostsPageSize = 4;
   const [userPostsCurrentPage, setUserPostsCurrentPage] = useState(1);
@@ -137,11 +81,6 @@ function HomeScreen(navigation) {
   };
 
   useEffect( () => {
-    setIsLoadingUserStories(true);
-    const getInitialData = pagination(userStories, 1, userStoriesPageSize);
-    setUserStoriesRenderedData(getInitialData);
-    setIsLoadingUserStories(false);
-
     setIsLoadingUserPosts(true);
     const getInitialDataPosts = pagination(userPosts, 1, userPostsPageSize);
     setUserPostsRenderedData(getInitialDataPosts);

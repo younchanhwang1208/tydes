@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-
 import { CountdownCircleTimer, useCountdown } from 'react-countdown-circle-timer'
 import CountDown from 'react-native-countdown-component';
-const TimerScreen = () => {
+import SuccessScreen from './SuccessScreen';
+
+function TimerScreen(props) {
   const [hours, setHours] = useState('0');
   const [minutes, setMinutes] = useState('0');
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const timerRef = useRef(null);
-
+  const totalSeconds = 4000; //arbitrary number
+  
   useEffect(() => {
     if (!isRunning) {
       const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;  
@@ -21,7 +23,7 @@ const TimerScreen = () => {
     if (isRunning) return;
     const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
     
-    if (totalSeconds < 1500) {
+    if (totalSeconds < 60) {
       alert('Minimum set time is 25 minutes! You can do better than that!')
     } else if (totalSeconds > 86400){
       alert('Set a more realistic goal!');
@@ -33,6 +35,7 @@ const TimerScreen = () => {
           if (prev <= 1) {
             clearInterval(timerRef.current);
             setIsRunning(false);
+            props.navigation.navigate("Success", {secs: totalSeconds});
             return 0;
           }
           return prev - 1;
@@ -52,7 +55,6 @@ const TimerScreen = () => {
     formatTime();
   };
 
-
   const formatTime = () => {
     const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
@@ -61,20 +63,13 @@ const TimerScreen = () => {
       .toString()
       .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
-
+  console.log(totalSeconds);
   return (
     
     <View style={styles.container}>
-      <CountDown
-        running={false}
-        until={10}
-        onFinish={() => alert('finished')}
-        timeToShow={['H', 'M']}
-        onPress={() => running={True}}
-        size={20}
-      />
-      <Text style={styles.title}>Set Timer</Text>
+      <Text style={styles.title}>Ride the Tyde</Text>
       <View style={styles.inputContainer}>
+        
         <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -93,7 +88,9 @@ const TimerScreen = () => {
         />
       </View>
       <Text style={styles.timeDisplay}>{formatTime()}</Text>
-      <Button title={isRunning ? 'Stop' : 'Ride the Tyde'} onPress={isRunning ? handleStop : handleStart} />
+      <Button title={isRunning ? 'Stop' : 'Start!'} onPress={isRunning ? handleStop : handleStart} />
+      <Text>{totalSeconds}</Text>
+      <Button title='press' onPress={() => props.navigation.navigate('Success', {secs: totalSeconds})}></Button>
     </View>
   );
 };
@@ -112,20 +109,25 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    marginBottom: 20,
-  },
-  input: {
-    width: 100,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+    position: 'absolute',
     borderRadius: 5,
     textAlign: 'center',
-    marginHorizontal: 10,
+    zIndex: 2,
+    opacity: 0,
+  },
+  input: {
+    width: 80,
+    height: 70,
+    backgroundColor: 'red',
+    borderRadius: 5,
+    textAlign: 'center',
+    transform: [{ translateX: -40 }],
+    marginRight: 10,
   },
   timeDisplay: {
-    fontSize: 48,
+    fontSize: 60,
     marginBottom: 20,
+    fontWeight: '600',
   },
 });
 

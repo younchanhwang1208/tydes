@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {faBell, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import globalStyle from './assets/styles/globalStyle';
 import HomeScreenNavigator from './components/navigator/HomeScreenNavigator';
-
+import { createStackNavigator } from '@react-navigation/stack';
 
 function App() {
   return (
