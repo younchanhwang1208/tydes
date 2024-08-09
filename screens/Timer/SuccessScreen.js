@@ -10,7 +10,6 @@ function SuccessScreen({route, navigation}){
         <Text>{secs}</Text>
         <Button title='Log!' onPress={() => navigation.navigate('PhotoLog')} >  </Button>
         <Button title='Maybe Next Time' onPress={() => navigation.navigate('TydeTimeUpdate', {secs: secs})} >  </Button>
-        
     </View>
 }
 

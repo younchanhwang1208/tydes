@@ -24,7 +24,6 @@ const globalStyle = StyleSheet.create({
         marginTop: 30,
         paddingLeft: 10,
     },
-
     icon: {
         marginHorizontal: 20
     },
@@ -40,6 +39,16 @@ const globalStyle = StyleSheet.create({
         backgroundColor: 'gray',
         paddingHorizontal: 15,
         paddingVertical: 20,
+    },
+    challengeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 5,
+        marginHorizontal: 15,
+        height: 100,
+        borderRadius: 30,
+        backgroundColor: 'gray',
+        padding: 20,
     },
     rowContainer: {
         flexDirection: 'row',
@@ -59,6 +68,17 @@ const globalStyle = StyleSheet.create({
         backgroundColor: 'red',
         marginRight: 10,
         borderRadius: 9,
+    },
+    imageContainer: {
+        justifyContent: 'center', // Vertically centers the image within this container
+        width: 60,
+        height: 60,
+        marginRight: 20,
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 10,
     },
     postTitle: {
         fontSize: 22,
@@ -83,8 +103,15 @@ const globalStyle = StyleSheet.create({
         marginRight: 3,
         borderRadius: 9,
     },
-
-
+    topBar: {
+        position: 'absolute',
+        margin: 10,
+        backgroundColor: 'white',
+        alignSelf: 'center',
+        height: 30,
+        width: 150,
+        borderRadius: 10,
+    },
 });
 
 export default globalStyle

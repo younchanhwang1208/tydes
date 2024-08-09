@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Animated } from 'react-native';
 import { CountdownCircleTimer, useCountdown } from 'react-countdown-circle-timer'
 import CountDown from 'react-native-countdown-component';
 import SuccessScreen from './SuccessScreen';
@@ -11,6 +11,7 @@ function TimerScreen(props) {
   const [isRunning, setIsRunning] = useState(false);
   const timerRef = useRef(null);
   const totalSeconds = 4000; //arbitrary number
+  const [success, setSuccess] = useState(false);
   
   useEffect(() => {
     if (!isRunning) {
@@ -19,6 +20,17 @@ function TimerScreen(props) {
     }
   }, [hours, minutes]);
 
+  const opacityAnim = useRef(new Animated.Value(1)).current;
+  const positionAnim = useRef(new Animated.Value(0)).current;
+  const updatedOpacityAnim = useRef(new Animated.Value(0)).current;
+  const updatedPositionAnim = useRef(new Animated.Value(30)).current;
+
+  useEffect(() => {
+    if (success) {
+      
+    }
+
+  }, [success])
   const handleStart = () => {
     if (isRunning) return;
     const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
@@ -65,7 +77,6 @@ function TimerScreen(props) {
   };
   console.log(totalSeconds);
   return (
-    
     <View style={styles.container}>
       <Text style={styles.title}>Ride the Tyde</Text>
       <View style={styles.inputContainer}>
@@ -74,7 +85,7 @@ function TimerScreen(props) {
           style={styles.input}
           keyboardType="numeric"
           placeholder="Hours"
-          // value={hours}
+          value={hours}
           onChangeText={(text) => setHours(text === '' ? '0' : text)}
           editable={!isRunning}
         />
@@ -82,7 +93,7 @@ function TimerScreen(props) {
           style={styles.input}
           keyboardType="numeric"
           placeholder="Minutes"
-          // value={minutes}
+          value={minutes}
           onChangeText={(text) => setMinutes(text === '' ? '0' : text)}
           editable={!isRunning}
         />

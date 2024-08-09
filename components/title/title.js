@@ -8,10 +8,9 @@ import PropTypes from 'prop-types';
 const Title = props => {
     return <Text style={style.title}>{props.title}</Text>;
 };
+
 Title.propTypes = {
     title: PropTypes.string.isrequired,
-}
-
-
+};
 
 export default Title;

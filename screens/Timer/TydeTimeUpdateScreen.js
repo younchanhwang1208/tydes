@@ -79,7 +79,6 @@ function TydeTimeUpdateScreen({route}){
         <Text style={styles.timeFont}>{updatedHrs}</Text>
         <Text style={styles.timeFont}>{updatedMins}</Text>
     </Animated.View>
-
   </View>
 }
 const styles = StyleSheet.create({
@@ -88,25 +87,26 @@ const styles = StyleSheet.create({
         height: '100%',
         top: 0,
         left: 0,
-        width: '65%',
+        width: '45%',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
     },
     rightContainer: {
         width: '35%',
-        left: '65%',
+        left: '50%',
         height: '100%',
-        backgroundColor: 'red',
-        justifyContent: 'center'
+        // backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'flex-start'
     },
     unitFont: {
         fontSize: 40,
         marginVertical: 40,
     },
     timeFont: {
-        fontSize: 80,
+        fontSize: 90,
         fontWeight: '500',
-        marginVertical: 30,
+        marginVertical: 10,
     },
 });
 

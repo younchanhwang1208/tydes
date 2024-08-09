@@ -15,16 +15,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 function App() {
   return (
       <NavigationContainer>
-
-        <View
-          style={{flex: 1}}>
-            <SafeAreaView>
-          <View style={globalStyle.titleContainer}>
-            <Title title={'tydes'}/> 
-          </View>
-          </SafeAreaView>
+        {/* <View
+          style={{flex: 1}}> */}
         <MainTabNavigator/>
-        </View>
+        {/* </View> */}
       </NavigationContainer>
     );
 }

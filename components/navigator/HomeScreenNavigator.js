@@ -1,12 +1,15 @@
 import React, { Profiler } from 'react';
+import { SafeAreaView } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HomeScreen from '../../screens/Home/HomeScreen';
 import RecapScreen from '../../screens/Home/RecapScreen';
+
 
 const Tab = createMaterialTopTabNavigator();
 
 function HomeScreenNavigator() {
   return (
+    <SafeAreaView>
     <Tab.Navigator
       initialRouteName='Live'
       screenOptions={{tabBarStyle:{
@@ -21,6 +24,7 @@ function HomeScreenNavigator() {
         <Tab.Screen name="Live" component={HomeScreen} />
         <Tab.Screen name="Recap" component={RecapScreen} />
     </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 

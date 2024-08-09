@@ -72,12 +72,16 @@ function PhotoLogScreen() {
     // For example, save the photo to storage, etc.
     console.log('Photo confirmed:', capturedPhoto);
     setShowPreview(false); // Hide the preview after confirmation
+    
   };
 
   const retakePhoto = () => {
     // User wants to retake the photo
     setCapturedPhoto(null); // Clear the captured photo
     setShowPreview(false); // Hide the preview
+    props.pop();
+    props.pop();
+    props.pop();
   };
 
   const onCameraReady = (ref) => {
