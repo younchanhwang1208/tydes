@@ -9,13 +9,13 @@ function TimerScreen(props) {
   const [minutes, setMinutes] = useState('0');
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const timerRef = useRef(null);
-  const totalSeconds = 4000; //arbitrary number
+  const timerRef = useRef(null); //arbitrary number
   const [success, setSuccess] = useState(false);
-  
+  const [totalSeconds, setTotalSeconds] = useState(0);
   useEffect(() => {
     if (!isRunning) {
-      const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;  
+      setTotalSeconds(parseInt(hours) * 3600 + parseInt(minutes) * 60);
+      // const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;  
       setSeconds(totalSeconds);
     }
   }, [hours, minutes]);
@@ -33,7 +33,8 @@ function TimerScreen(props) {
   }, [success])
   const handleStart = () => {
     if (isRunning) return;
-    const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
+      setTotalSeconds(parseInt(hours) * 3600 + parseInt(minutes) * 60);
+    // const totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60;
     
     if (totalSeconds < 60) {
       alert('Minimum set time is 25 minutes! You can do better than that!')
@@ -75,7 +76,7 @@ function TimerScreen(props) {
       .toString()
       .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
-  console.log(totalSeconds);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ride the Tyde</Text>
@@ -88,6 +89,8 @@ function TimerScreen(props) {
           value={hours}
           onChangeText={(text) => setHours(text === '' ? '0' : text)}
           editable={!isRunning}
+          contextMenuHidden={true} // Hide context menu
+          selectTextOnFocus={false}
         />
         <TextInput
           style={styles.input}
@@ -96,11 +99,12 @@ function TimerScreen(props) {
           value={minutes}
           onChangeText={(text) => setMinutes(text === '' ? '0' : text)}
           editable={!isRunning}
+          contextMenuHidden={true} // Hide context menu
+          selectTextOnFocus={false}
         />
       </View>
       <Text style={styles.timeDisplay}>{formatTime()}</Text>
       <Button title={isRunning ? 'Stop' : 'Start!'} onPress={isRunning ? handleStop : handleStart} />
-      <Text>{totalSeconds}</Text>
       <Button title='press' onPress={() => props.navigation.navigate('Success', {secs: totalSeconds})}></Button>
     </View>
   );
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FFFFFF',
   },
   title: {
     fontSize: 24,

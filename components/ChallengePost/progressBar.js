@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const ProgressBar = (props) => {
     return <View style={[style.progressBar, { height: props.height }]}>
-    <View style={[style.completeBar, { width: props.widthPercent }]}></View>
+    <View style={[style.completeBar, { width: props.widthPercent, height: props.height}]}></View>
     </View>
 };
 
@@ -20,12 +20,11 @@ const style = StyleSheet.create({
     progressBar: {
         marginVertical: 10,
         borderRadius: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#d5d5d9',
     },
     completeBar: {
-        height: 10,
         borderRadius: 10,
-        backgroundColor: 'red',
+        backgroundColor: '#cce6fe',
     },
 })
 

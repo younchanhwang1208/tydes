@@ -6,7 +6,7 @@ import ProgressBar from "./progressBar"
 import { parseDateString, calculateDaysBetween, inProgress, percentDone, formatDayMonth } from "../../screens/Challenge/utils";
 
 
-const {width, height } = Dimensions.get('window')
+const {width, height} = Dimensions.get('window')
 
 const ChallengeJoinPost = (props) => {
     const ymdStartDate = parseDateString(props.startDate);
@@ -88,7 +88,7 @@ const style = StyleSheet.create({
         fontSize: 17,  
         fontWeight: "400",
         marginTop: 20,
-        
+
     },
     subText: {
         fontSize: 14,

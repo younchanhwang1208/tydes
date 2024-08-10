@@ -92,7 +92,7 @@ function HomeScreen(navigation) {
   }, []);
 
   return (
-  <SafeAreaView>
+  <SafeAreaView style={globalStyle.globalContainer}>
     {/* <TouchableOpacity style={globalStyle.topLeftContainer}>
       <FontAwesomeIcon style={globalStyle.icon} icon={faUserPlus} />
     </TouchableOpacity>

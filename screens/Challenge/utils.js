@@ -6,7 +6,7 @@ export const parseDateString = (dateString) => {
   export const calculateDaysBetween = (startDate, endDate) => {
     const oneDay = 1000 * 60 * 60 * 24; // Milliseconds in one day
     const diffInTime = endDate - startDate; // Difference in milliseconds
-    return Math.round(diffInTime / oneDay);
+    return Math.ceil(diffInTime / oneDay);
   };
   
   export const inProgress = (startDate, today) => {

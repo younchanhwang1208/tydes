@@ -38,7 +38,7 @@ const ChallengePost = (props) => {
         // Cleanup interval on component unmount
         return () => clearInterval(intervalId);
       }, []);
-
+      
     useEffect(() => {
         setPerDone(percentDone(ymdStartDate, ymdEndDate, currentDate));
     },[currentDate]);

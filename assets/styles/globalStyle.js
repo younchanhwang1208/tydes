@@ -5,6 +5,9 @@ const userPostHeight = 190
 const marginBottom = 6
 
 const globalStyle = StyleSheet.create({
+    globalContainer: {
+        backgroundColor: '#FFFFFF', // Set background color to white
+      },
     titleContainer: {
         marginVertical: 20,
         alignItems: 'center',
@@ -78,7 +81,7 @@ const globalStyle = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
-        borderRadius: 10,
+        borderRadius: 20,
     },
     postTitle: {
         fontSize: 22,
@@ -111,6 +114,19 @@ const globalStyle = StyleSheet.create({
         height: 30,
         width: 150,
         borderRadius: 10,
+    },
+    divider: {
+        height: 8,
+        backgroundColor: '#f0f0f3',
+        width: '100%',
+    },
+    header: {
+        fontSize: 20,
+        fontweight: '700',
+    },
+    subtext: {
+        fontSize: 13,
+        color: '#6d6d73',
     },
 });
 
