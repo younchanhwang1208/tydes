@@ -97,7 +97,7 @@ function TimerScreen(props) {
           keyboardType="numeric"
           placeholder="Minutes"
           value={minutes}
-          onChangeText={(text) => setMinutes(text === '' ? '0' : text)}
+          onChangeText={(text) => setMinutes(text > 59 ? '59' : text)}
           editable={!isRunning}
           contextMenuHidden={true} // Hide context menu
           selectTextOnFocus={false}

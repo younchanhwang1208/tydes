@@ -1,0 +1,137 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Figtree-Black.ttf",
+      "sha1": "91e177a4faa6ba155d583eb54927c46a824e9747"
+    },
+    {
+      "path": "assets/fonts/Figtree-BlackItalic.ttf",
+      "sha1": "a1c6bf306b625fdddce053cbcef3b0995a9fc690"
+    },
+    {
+      "path": "assets/fonts/Figtree-Bold.ttf",
+      "sha1": "ab784d6541b3ac86e3ad5e8a0941e80f1844983f"
+    },
+    {
+      "path": "assets/fonts/Figtree-BoldItalic.ttf",
+      "sha1": "1a678915fd091d95120ce50bb845bcf921987c9a"
+    },
+    {
+      "path": "assets/fonts/Figtree-ExtraBold.ttf",
+      "sha1": "39972229860e5ec379527f6d87b5aff21a6183a7"
+    },
+    {
+      "path": "assets/fonts/Figtree-ExtraBoldItalic.ttf",
+      "sha1": "aa515bfd2fce2c5bb2a839873bb41b005db7dc70"
+    },
+    {
+      "path": "assets/fonts/Figtree-Italic.ttf",
+      "sha1": "0cc67d2f85d70ff024f6ca4c85a68258e5058519"
+    },
+    {
+      "path": "assets/fonts/Figtree-Light.ttf",
+      "sha1": "1aecf6ec3bf57022dd796aadc8b7738f000a4286"
+    },
+    {
+      "path": "assets/fonts/Figtree-LightItalic.ttf",
+      "sha1": "3ec17afc0633a3a5fe9ffe7bf6ae43b53465ce0b"
+    },
+    {
+      "path": "assets/fonts/Figtree-Medium.ttf",
+      "sha1": "abb23ed443b2ee8f51e1fe843c8055bc7635a238"
+    },
+    {
+      "path": "assets/fonts/Figtree-MediumItalic.ttf",
+      "sha1": "da492811edc861305072203386f2115ae40eff83"
+    },
+    {
+      "path": "assets/fonts/Figtree-Regular.ttf",
+      "sha1": "f9148d192a8bf4b984d82f60f658aeadd2c133d3"
+    },
+    {
+      "path": "assets/fonts/Figtree-SemiBold.ttf",
+      "sha1": "21b09a00065c5800021b6d2c969c83496f7d4d06"
+    },
+    {
+      "path": "assets/fonts/Figtree-SemiBoldItalic.ttf",
+      "sha1": "afc6e71c39a009561b49e1a4907c19941ff39d0c"
+    },
+    {
+      "path": "assets/fonts/Inter-Black.ttf",
+      "sha1": "f79fa58ace5f55e338c99bf71e7e0702841df6f2"
+    },
+    {
+      "path": "assets/fonts/Inter-Bold.ttf",
+      "sha1": "47ff07c75746682133b81e7ac0537ce50a4c9916"
+    },
+    {
+      "path": "assets/fonts/Inter-ExtraBold.ttf",
+      "sha1": "c9b3d2f2449ab2c67ff075f806973fa3d7e104b3"
+    },
+    {
+      "path": "assets/fonts/Inter-ExtraLight.ttf",
+      "sha1": "f78ee1d6cbfc64f656247c604ef270ef116abbf5"
+    },
+    {
+      "path": "assets/fonts/Inter-Light.ttf",
+      "sha1": "cbb2506d8da21edbb2dc8cfa26e3b42a97d138f8"
+    },
+    {
+      "path": "assets/fonts/Inter-Medium.ttf",
+      "sha1": "e76f580811e031813e7150131a0724811cdd737a"
+    },
+    {
+      "path": "assets/fonts/Inter-Regular.ttf",
+      "sha1": "cfa780d0b50b2bb7eacb82984f1b18a95aaa40c5"
+    },
+    {
+      "path": "assets/fonts/Inter-SemiBold.ttf",
+      "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
+    },
+    {
+      "path": "assets/fonts/Inter-Thin.ttf",
+      "sha1": "757805e615c974756646e54ceff8e409d5c47207"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Black.otf",
+      "sha1": "f9c95aac2990a6b6a5d89070ee6b08cad9bc3b08"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Bold.otf",
+      "sha1": "b39fbfb2d62812824b4515cf31b8cbd543365042"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Heavy.otf",
+      "sha1": "7d2b12a476f51ba6d8097a35718d842d2f6e4aaf"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Light.otf",
+      "sha1": "18035184930449ae0767dedc54022fb7c9b3a7c4"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Medium.otf",
+      "sha1": "7cb44073494cc3c737c9e6aae433580ea26d115e"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Regular.otf",
+      "sha1": "694453f1c9d8afe3dcd252181ae61ed27b8a433d"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Semibold.otf",
+      "sha1": "3d8164332539f5c538e7e3cecd9d72373d0dd25f"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Thin.otf",
+      "sha1": "697e5ddf02fdd288489f01dadbf930b4e950c17b"
+    },
+    {
+      "path": "assets/fonts/SF-Pro-Rounded-Ultralight.otf",
+      "sha1": "b53075c573bd36a080ba6ba700cf8b1abf3baef2"
+    },
+    {
+      "path": "assets/fonts/fonthelper.js",
+      "sha1": "0eb49bdb0fc6dd629195c8e1941bb178c8e797f6"
+    }
+  ]
+}

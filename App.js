@@ -11,15 +11,19 @@ import {faBell, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import globalStyle from './assets/styles/globalStyle';
 import HomeScreenNavigator from './components/navigator/HomeScreenNavigator';
 import { createStackNavigator } from '@react-navigation/stack';
+import { TabBarVisibilityProvider, useTabBarVisibility } from './components/TabBarVisibilityContext'
+
 
 function App() {
   return (
+    <TabBarVisibilityProvider>
       <NavigationContainer>
         {/* <View
           style={{flex: 1}}> */}
         <MainTabNavigator/>
         {/* </View> */}
       </NavigationContainer>
+      </TabBarVisibilityProvider>
     );
 }
 
