@@ -35,7 +35,8 @@ const style=StyleSheet.create({
       },
       text: {
         fontSize: 15,
-        letterSpacing: 0.5,
+        letterSpacing: 0.2,
+        fontFamily: 'Figtree',
       }
 })
 

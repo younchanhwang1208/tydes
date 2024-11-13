@@ -1,31 +1,40 @@
 import React, { Profiler } from 'react';
-import { SafeAreaView } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { View, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../../screens/Home/HomeScreen';
-import RecapScreen from '../../screens/Home/RecapScreen';
+import DetailScreen from '../../screens/Home/DetailScreen';
 
 
-const Tab = createMaterialTopTabNavigator();
+const Stack = createStackNavigator();
 
 function HomeScreenNavigator() {
   return (
-    <SafeAreaView>
-    <Tab.Navigator
-      initialRouteName='Live'
-      screenOptions={{tabBarStyle:{
-        position: 'absolute',
-        margin: 10,
-        backgroundColor: 'white',
-        alignSelf: 'center',
-        height: 30,
-        width: 150,
-        borderRadius: 10,
-      }}}>
-        <Tab.Screen name="Live" component={HomeScreen} />
-        <Tab.Screen name="Recap" component={RecapScreen} />
-    </Tab.Navigator>
-    </SafeAreaView>
+    <Stack.Navigator
+      initialRouteName='Home'
+      screenOptions={{
+        headerShown: false}}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen 
+        name="Details"
+        component={DetailScreen}
+        options={({ navigation }) => ({
+          headerShown: true, 
+          headerTitle: '', 
+          headerBackTitleVisible: false,
+          headerLeft: () => (
+            <View style={{ paddingLeft: 10 }}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image 
+                  source={require('../../assets/images/icons/arrow-left.png')} 
+                  style={{ width: 24, height: 24 }} 
+                />
+              </TouchableOpacity>
+            </View>
+          ),
+        })}
+      />
+    </Stack.Navigator>
   );
-}
+};
 
 export default HomeScreenNavigator;

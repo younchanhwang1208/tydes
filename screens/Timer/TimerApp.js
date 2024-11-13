@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Image, TouchableOpacity, Dimensions, StyleSheet, Modal, TextInput, Animated } from 'react-native';
+import { View, Text, Button, Image, TouchableOpacity, Dimensions, StyleSheet, Modal, TextInput, Animated } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 import { useTabBarVisibility } from '../../components/TabBarVisibilityContext';
@@ -11,6 +11,7 @@ const TimerApp = () => {
   const [time, setTime] = useState(180); // Default 3 minutes in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [hours, setHours] = useState('0');
   const [minutes, setMinutes] = useState('3');
   const timerPosition = useRef(new Animated.Value(0)).current;
@@ -23,7 +24,7 @@ const TimerApp = () => {
   const wavePosition2 = useRef(new Animated.Value(-430)).current;
   const wavePosition3 = useRef(new Animated.Value(-430)).current;
   const wavePosition4 = useRef(new Animated.Value(-430)).current;
-  var totalSeconds = 0;
+  const [totalSeconds, setTotalSeconds] = useState(0);
 
 
   const animateWave1 = Animated.loop(
@@ -40,7 +41,6 @@ const TimerApp = () => {
       }),
     ])
   );
-
   const animateWave2 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition2, {
@@ -55,7 +55,6 @@ const TimerApp = () => {
       }),
     ])
   );
-
   const animateWave3 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition3, {
@@ -70,7 +69,6 @@ const TimerApp = () => {
       }),
     ])
   );
-
   const animateWave4 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition4, {
@@ -86,6 +84,7 @@ const TimerApp = () => {
     ])
   );
 
+  
 
   const { setHideTabBar } = useTabBarVisibility();  
   const navigation = useNavigation();
@@ -100,8 +99,9 @@ const TimerApp = () => {
       clearInterval(interval);
       setIsRunning(false); // Stop running when timer reaches 0
       setHideTabBar(false);
+
       navigation.navigate('Success', {secs: totalSeconds})
-        }
+    }
     return () => clearInterval(interval);
   }, [isRunning, time]);
 
@@ -190,7 +190,7 @@ const TimerApp = () => {
   };
 
   const handleStart = () => {
-    totalSeconds = time;
+    setTotalSeconds(time);
     setIsRunning(true);
   };
   const handleQuit = () => {
@@ -218,49 +218,57 @@ const TimerApp = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.timerContainer, { transform: [{ translateY: timerPosition }] }]}>
-        <Text style={styles.title}>Ride the Tyde!</Text>
-        <Text style={styles.timer}>{formatTime()}</Text>
+    <View style={timerStyles.container}>
+
+      <Animated.View style={[timerStyles.timerContainer, { transform: [{ translateY: timerPosition }] }]}>
+        <Text style={timerStyles.title}>Ride the Tyde!</Text>
+        <Text style={timerStyles.timer}>{formatTime()}</Text>
       </Animated.View>
 
       <Animated.View style={{ opacity: buttonOpacity }}>
-        <TouchableOpacity onPress={handleOpenModal}>
-            <Text style={styles.editText}>Tap to Edit</Text>
+        <TouchableOpacity disabled={isRunning} onPress={handleOpenModal}>
+            <Text style={timerStyles.editText}>Tap to Edit</Text>
         </TouchableOpacity>
       </Animated.View>
 
-        <Animated.View style={[styles.startButton, { transform: [{ translateY: buttonPosition }] }]}>
+        <Animated.View style={[timerStyles.startButton, { transform: [{ translateY: buttonPosition }] }]}>
             <TouchableOpacity onPress={handleStart}>
-            <Text style={styles.startButtonText}>Start</Text>
+            <Text style={timerStyles.startButtonText}>Start</Text>
             </TouchableOpacity>
         </Animated.View>
 
-        
-        <TouchableOpacity style={styles.quitButton}onLongPress={handleQuit}
-          delayLongPress={1000}>
-            <Animated.Text style={[styles.quitButtonText, {transform: [{ translateY: quitPosition }], opacity: quitOpacity }]}>Hold to Quit Tyde</Animated.Text>
+
+
+
+        <TouchableOpacity //temporary BUTTON
+            style={timerStyles.quitButton} 
+            onLongPress={() => setTime(0)}  // Pass a function reference using an arrow function
+            delayLongPress={1000}>
+          <Text>SKIP</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity  disabled={!isRunning} style={timerStyles.quitButton}onLongPress={handleQuit}
+          delayLongPress={2500}>
+            <Animated.Text style={[timerStyles.quitButtonText, {transform: [{ translateY: quitPosition }], opacity: quitOpacity }]}>Hold to Quit Tyde</Animated.Text>
+        </TouchableOpacity>
+
+
+        <>{/* WAVE */}
         <Animated.View style={{transform: [{ translateX: wavePosition1 }], opacity: waveOpacity,}}>
-          <Image style={[styles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave1.png')} />
+          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave1.png')} />
         </Animated.View>
         <Animated.View style={{transform: [{ translateX: wavePosition2 }], opacity: waveOpacity,}}>
-          <Image style={[styles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave2.png')} />
+          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave2.png')} />
         </Animated.View>
         <Animated.View style={{transform: [{ translateX: wavePosition3 }], opacity: waveOpacity,}}>
-          <Image style={[styles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave3.png')} />
+          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave3.png')} />
         </Animated.View>
         <Animated.View style={{transform: [{ translateX: wavePosition4 }], opacity: waveOpacity,}}>
-          <Image style={[styles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave4.png')} />
+          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave4.png')} />
         </Animated.View>
-          
-
-
-
-
-
-
-
+      </>
+      
+    
       {/* Modal for editing the timer */}
       <Modal
         animationType="slide"
@@ -268,21 +276,21 @@ const TimerApp = () => {
         visible={isModalVisible}
         onRequestClose={handleCloseModal}
       >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Set Timer</Text>
-            <View style={styles.inputRow}>
+        <View style={timerStyles.modalOverlay}>
+          <View style={timerStyles.modalContent}>
+            <Text style={timerStyles.modalTitle}>Set Timer</Text>
+            <View style={timerStyles.inputRow}>
               <TextInput
-                style={styles.input}
+                style={timerStyles.input}
                 value={hours}
                 onChangeText={setHours}
                 keyboardType="numeric"
                 placeholder="Hours"
                 maxLength={2} // Limit input to two digits
               />
-              <Text style={styles.colon}>:</Text>
+              <Text style={timerStyles.colon}>:</Text>
               <TextInput
-                style={styles.input}
+                style={timerStyles.input}
                 value={minutes}
                 onChangeText={value => setMinutes(value > 59 ? '59' : value)}
                 keyboardType="numeric"
@@ -290,23 +298,22 @@ const TimerApp = () => {
                 maxLength={2} // Limit input to two digits
               />
             </View>
-            <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.modalButton} onPress={handleSave}>
-                <Text style={styles.modalButtonText}>Save</Text>
+            <View style={timerStyles.modalButtons}>
+              <TouchableOpacity style={timerStyles.modalButton} onPress={handleSave}>
+                <Text style={timerStyles.modalButtonText}>Save</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.modalButton} onPress={handleCloseModal}>
-                <Text style={styles.modalButtonText}>Cancel</Text>
+              <TouchableOpacity style={timerStyles.modalButton} onPress={handleCloseModal}>
+                <Text style={timerStyles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </Modal>
-
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const timerStyles = StyleSheet.create({
   container: {
     width: width,
     height: height,
@@ -316,7 +323,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontFamily: 'Figtree-Medium',
+    fontFamily: 'Figtree',
+    fontWeight: '500',
     marginBottom: 20,
   },
   timerContainer: {
@@ -324,8 +332,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   timer: {
-    fontSize: 80,
-    fontFamily: 'SF Pro Rounded Regular',
+    fontSize: 90,
+    fontFamily: 'Figtree',
     fontWeight: 'bold',
   },
   editText: {
@@ -337,7 +345,7 @@ const styles = StyleSheet.create({
   startButton: {
     position: 'absolute',
     bottom: 150,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#A8D4FD',
     borderRadius: 30,
     paddingVertical: 10,
     paddingHorizontal: 40,

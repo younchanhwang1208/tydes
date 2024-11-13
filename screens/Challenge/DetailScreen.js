@@ -60,9 +60,9 @@ function DetailScreen(props) {
         </View>
         <View style={{alignItems: 'center'}}>
         <Text style={[style.title, { fontSize: 20, marginBottom: 15 }]}>{title}</Text>
-            <View style={{flexDirection: 'row', marginBottom: 5}}>
+            <View style={{flexDirection: 'row', marginBottom: 5, }}>
                 <Image style={{width: 16, height: 16, marginRight: 5}}source={require('../../assets/images/icons/users-01.png')}></Image>
-                <Text>{totalMember} people joined</Text>
+                <Text style={{fontFamily: 'Figtree'}}>{totalMember} people joined</Text>
             </View>
             <View style={{flexDirection: 'row'}}>
                 <ToDo 
@@ -118,18 +118,18 @@ function DetailScreen(props) {
 }
 
 DetailScreen.propTypes={
-    id: PropTypes.number.isRequired,
-    hostName: PropTypes.string.isRequired,
-    title:  PropTypes.string.isRequired,
-    startDate:  PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
-    hostAvatar:  PropTypes.any.isRequired,
-    totalMember:  PropTypes.number.isRequired,
-    betMin: PropTypes.number.isRequired,
-    betMax: PropTypes.number.isRequired,
+    id: PropTypes.number,
+    hostName: PropTypes.string,
+    title:  PropTypes.string,
+    startDate:  PropTypes.string,
+    endDate: PropTypes.string,
+    hostAvatar:  PropTypes.any,
+    totalMember:  PropTypes.number,
+    betMin: PropTypes.number,
+    betMax: PropTypes.number,
     description: PropTypes.string,
-    type: PropTypes.string.isRequired, //screentime, tideRyde
-    maxHours: PropTypes.number.isRequired,
+    type: PropTypes.string, //screentime, tideRyde
+    maxHours: PropTypes.number,
 };
 
 const square = 70
@@ -144,6 +144,7 @@ const style = StyleSheet.create({
     title: {
         letterSpacing: 0.2,
         fontWeight: '700',
+        fontFamily: 'Figtree',
     },
     hostContainer: {
         marginVertical: 25,
@@ -165,7 +166,8 @@ const style = StyleSheet.create({
         marginVertical: 10,
         lineHeight: 20,
         fontSize: 14,
-        color: '#6d6d73'
+        color: '#6d6d73',
+        fontFamily: 'Figtree',
 
     }
 });

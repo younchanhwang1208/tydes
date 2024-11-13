@@ -3,67 +3,90 @@ import React, {useEffect, useState, useRef} from 'react';
 import {
   Button, FlatList, SafeAreaView, Text, TouchableOpacity, View, Dimensions
 } from 'react-native';
-import { getFontFamily } from '../../assets/fonts/fonthelper';
-import Title from '../../components/title/title';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import {faBell, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 import style from '../../components/title/style';
 import globalStyle from '../../assets/styles/globalStyle';
-import UserStory from '../../components/UserStories/userStory';
-import { NavigationContainer } from '@react-navigation/native';
 import UserPost from '../../components/UserPosts/userPost';
+import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
-import HomeScreenNavigator from '../../components/navigator/HomeScreenNavigator';
 
-function HomeScreen(navigation) {
+const {width, height} = Dimensions.get('window');
 
+
+function HomeScreen() {
+  const navigation = useNavigation();
+  const myProgress = [
+    {
+      id: 0,
+      name: 'Tydes Team',
+      username:'ridethetyde',
+      date: '24.08.15',
+      lastUpload: '15:36',
+      alohas: 10,
+      comments: 12,
+      screenTime: 120,
+      tydeNumber: 1,
+      tydeTime: 120,
+      lastTydeTime: 80,
+      image: require('../../assets/images/4cut.png'),
+      title: 'inseng4cut',
+      avatar: require('../../assets/images/icons/profile_blue.png'),
+    }
+  ]
   const userPosts = [
     {
       id: 1,
       name: 'Youn',
+      username: 'younhwang_',
       date: '24.01.08',
       lastUpload: '15:36',
       alohas: 10,
-      comments: 8,
+      comments: 7,
       screenTime: 90,
-      tydeNumber: 2,
+      tydeNumber: 1,
       tydeTime: 120,
-      image: require('../../assets/images/4cut.png'),
-      title: 'inseng4cut',
-      avatar: require('../../assets/images/storyDefaultProfile.png'),
+      lastTydeTime: 120,
+      image: require('../../assets/images/sfgiants.png'),
+      title: 'Giants Win! 🥰',
+      avatar: require('../../assets/images/icons/profile_blue.png'),
     },
-    {
-    id: 2,
-    name: 'stella',
-    date: '24.01.18',
-    lastUpload: '20:36',
-    alohas: 10,
-    comments: 8,
-    screenTime: 90,
-    tydeNumber: 0,
-    tydeTime: 120,
-    image: null,
-    title: 'inseng4cut',
-    avatar: require('../../assets/images/storyDefaultProfile.png'),
-  },
+  //   {
+  //   id: 2,
+  //   name: 'stella',
+  //   username: 'stellapark',
+  //   date: '24.01.18',
+  //   lastUpload: '20:36',
+  //   alohas: 10,
+  //   comments: 8,
+  //   screenTime: 90,
+  //   tydeNumber: 0,
+  //   tydeTime: 0,
+  //   image: null,
+  //   title: 'inseng4cut',
+  //   avatar: require('../../assets/images/icons/profile_pink.png'),
+  // },
   {
     id: 3,
-    name: 'Youn',
+    name: 'Jiwon',
+    username: 'jiwonyoo',
     date: '24.01.08',
     lastUpload: '15:36',
     alohas: 10,
     comments: 8,
     screenTime: 90,
     tydeNumber: 2,
-    tydeTime: 120,
-    image: require('../../assets/images/4cut.png'),
-    title: 'inseng4cut',
-    avatar: require('../../assets/images/storyDefaultProfile.png'),
+    tydeTime: 60,
+    image: require('../../assets/images/book.png'),
+    title: 'My personal favorite 😍',
+    avatar: require('../../assets/images/icons/profile_pink.png'),
   },
   ]
 
   const [screenData, setScreenData] = useState(Dimensions.get('screen'));
 
+  const handlePress = (item) => {
+    console.log('Navigating to Detail with:', item);
+    navigation.navigate('Details', item);
+  };
 
   const userPostsPageSize = 4;
   const [userPostsCurrentPage, setUserPostsCurrentPage] = useState(1);
@@ -92,40 +115,27 @@ function HomeScreen(navigation) {
   }, []);
 
   return (
-  <SafeAreaView style={globalStyle.globalContainer}>
-    {/* <TouchableOpacity style={globalStyle.topLeftContainer}>
-      <FontAwesomeIcon style={globalStyle.icon} icon={faUserPlus} />
-    </TouchableOpacity>
-    <TouchableOpacity style={globalStyle.topRightContainer}>
-        <FontAwesomeIcon style={globalStyle.icon} icon={faBell} />
-    </TouchableOpacity> */}
+  <SafeAreaView>
+    <ScrollView>
+    <View style={globalStyle.navBar}>
+      <Text style={globalStyle.tydes}>TYDES</Text>
+    </View>
+    
 
 
   {/* UserPosts */}
-  <View style={style.userPostContainer}>
+  <View>
 
-    <FlatList scrollEnabled={true} 
-      
-      // onEndReachedThreshold={0.5}
-      // onEndReached={() => {
-      //   if (isLoadingUserPosts) {
-      //     return;
-      //   }
-      //   setIsLoadingUserStories(true);
-      //   const contentToAppend = pagination(userPosts, userPostsCurrentPage + 1, userPostsPageSize);
-      //   if(contentToAppend.length > 0){
-      //     setUserStoriesCurrentPage(userPostsCurrentPage+1);
-      //     setUserStoriesRenderedData(prev => [...prev, ...contentToAppend])
-      //   }
-      // }}
-      // showsHorizontalScrollIndicator={false}
+    <FlatList scrollEnabled={true}
       data={userPosts} 
       renderItem={({item}) => (
+      <TouchableOpacity onPress={() => handlePress(item)}>
       <UserPost 
         id={item.id}
         date={item.date}
         lastUpload={item.lastUpload}
         name={item.name} 
+        username={item.username}
         alohas={item.alohas}
         comments={item.comments} 
         screenTime={item.screenTime} 
@@ -135,13 +145,10 @@ function HomeScreen(navigation) {
         title={item.title}
         avatar={item.avatar} 
         />
+        </TouchableOpacity>
   )}/>
   </View>
-
-
-    {/* <Text style={{fontSize: 50, fontFamily: getFontFamily('Inter', '300')}}>
-      Hello World!
-    </Text> */}
+  </ScrollView>
   </SafeAreaView>
 
   );

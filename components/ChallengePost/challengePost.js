@@ -47,7 +47,7 @@ const ChallengePost = (props) => {
         <View style={globalStyle.imageContainer}>
             <Image source={props.hostAvatar} style={globalStyle.image}></Image>
         </View>
-        <View style={{backgroundColor: 'green', flex: 1}}>
+        <View style={{flex: 1}}>
             <View>
                 <Text style={challengeStyle.title}>{props.title}</Text>
             </View>

@@ -42,11 +42,11 @@ const ChallengeJoinPost = (props) => {
         </View>
         <TouchableOpacity>
             <View style={style.joinButton}>
-                <Text style={{fontSize: 15}}>Join</Text>
+                <Text style={{fontSize: 15, fontFamily: 'Figtree', }}>Join</Text>
             </View>
         </TouchableOpacity>
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 12}}>
-            <Text style={{fontSize: 11}}>{ymdStartDate.toDateString().substring(4, ymdStartDate.toDateString().length-5)}-{ymdEndDate.toDateString().substring(4)}</Text>
+            <Text style={{fontSize: 11, fontFamily: 'Figtree-Regular'}}>{ymdStartDate.toDateString().substring(4, ymdStartDate.toDateString().length-5)}-{ymdEndDate.toDateString().substring(4)}</Text>
         </View>
     </View>
 
@@ -71,29 +71,32 @@ ChallengeJoinPost.propTypes={
 const style = StyleSheet.create({
     container: {
         marginHorizontal: 5,
-        backgroundColor: 'red',
         width: width / 2 - 20,
         height: 300,
         borderRadius: 30,
         padding: 25,
+        backgroundColor: 'white',
     },
     joinButton: {
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'green',
+        backgroundColor: '#CCE6FE',
         borderRadius: 15,
     },
     title: {
         fontSize: 17,  
         fontWeight: "400",
         marginTop: 20,
+        fontFamily: 'Figtree',
+        fontWeight: "600",
 
     },
     subText: {
         fontSize: 14,
         color: 'gray',
         marginBottom: 15,
+        fontFamily: 'Figtree-Regular',
     },
 });
 

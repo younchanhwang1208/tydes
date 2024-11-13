@@ -15,9 +15,9 @@ function ChallengeScreen() {
         id: 1 ,
         hostName: 'Tydes Team',
         title: 'TikTok 10 hour Challenge',
-        startDate: '2024.08.06',
-        endDate: '2024.08.20',
-        hostAvatar: require('../../assets/images/4cut.png'),
+        startDate: '2024.10.23',
+        endDate: '2024.10.30',
+        hostAvatar: require('../../assets/images/icons/profile_yellow.png'),
         totalMember: 32,
         betMin: 10,
         betMax: 200,
@@ -29,9 +29,9 @@ function ChallengeScreen() {
         id: 2 ,
         hostName: 'younhwang_',
         title: '20 Hour Tyde Ride Challenge',
-        startDate: '2024.08.12',
-        endDate: '2024.08.25',
-        hostAvatar: require('../../assets/images/4cut.png'),
+        startDate: '2024.10.28',
+        endDate: '2024.12.01',
+        hostAvatar: require('../../assets/images/icons/profile_blue.png'),
         totalMember: 40,
         betMin: 50,
         betMax: 100,
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   optionText: {
     color: '#7a7a7a', // Default text color (grey)
     fontSize: 16,
+    fontFamily: 'Figtree',
   },
   selectedButton: {
     backgroundColor: 'white', // White background for selected option

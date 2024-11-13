@@ -50,8 +50,6 @@ function TydeTimeUpdateScreen({route}){
         }),
       ]).start();
     }, 2000);
-
-     // 2000ms = 2 seconds
   }, []);
 
     return <View>
@@ -101,11 +99,14 @@ const styles = StyleSheet.create({
     },
     unitFont: {
         fontSize: 40,
+        fontFamily: 'Figtree',
+        fontWeight: '600',
         marginVertical: 40,
     },
     timeFont: {
         fontSize: 90,
-        fontWeight: '500',
+        fontFamily: 'Figtree',
+        fontWeight: 'bold',
         marginVertical: 10,
     },
 });

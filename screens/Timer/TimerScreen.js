@@ -79,7 +79,7 @@ function TimerScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Ride the Tyde</Text>
+      <Text style={styles.title1}>Ride the Tyde</Text>
       <View style={styles.inputContainer}>
         
         <TextInput
@@ -118,9 +118,11 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#FFFFFF',
   },
-  title: {
-    fontSize: 24,
+  title1: {
+    fontSize: 50,
     marginBottom: 20,
+    fontFamily: 'Figtree-SemiBold',
+    fontWeight: 600,
   },
   inputContainer: {
     flexDirection: 'row',
