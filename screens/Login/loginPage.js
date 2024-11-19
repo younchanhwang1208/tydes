@@ -4,15 +4,32 @@ import globalStyle from '../../assets/styles/globalStyle';
 import WaveAnimation from '../../components/WaveAnimation';
 
 const LoginPage = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [isCodeSent, setIsCodeSent] = useState(false);
 
-  const handleLogin = async () => {
+  const handleSendCode = async () => {
+    if (phoneNumber.length !== 10) {
+        Alert.alert('Invalid phone number', 'Please enter a valid phone number');
+        return;
+    }
     try {
-      // Add your authentication logic here
-      console.log('Login attempted with:', email, password);
+      // Add your phone verification logic here (e.g., Firebase Auth, Twilio, etc.)
+      console.log('Sending verification code to:', phoneNumber);
+      setIsCodeSent(true);
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Error sending code:', error);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    try {
+      // Add your code verification logic here
+      console.log('Verifying code:', verificationCode);
+      // If verification successful, navigate to main app
+      // navigation.navigate('MainApp');
+    } catch (error) {
+      console.error('Verification error:', error);
     }
   };
 
@@ -26,34 +43,44 @@ const LoginPage = ({ navigation }) => {
         <View style={globalStyle.rowContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+            keyboardType="phone-pad"
             autoCapitalize="none"
           />
         </View>
 
-        <View style={globalStyle.rowContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
-        </View>
-
-        <TouchableOpacity 
-          style={styles.loginButton} 
-          onPress={handleLogin}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        {!isCodeSent ? (
+          <TouchableOpacity 
+            style={styles.loginButton} 
+            onPress={handleSendCode}
+          >
+            <Text style={styles.buttonText}>Send Verification Code</Text>
+          </TouchableOpacity>
+        ) : (
+          <>
+            <View style={globalStyle.rowContainer}>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter Verification Code"
+                value={verificationCode}
+                onChangeText={setVerificationCode}
+                keyboardType="number-pad"
+              />
+            </View>
+            <TouchableOpacity 
+              style={styles.loginButton} 
+              onPress={handleVerifyCode}
+            >
+              <Text style={styles.buttonText}>Verify Code</Text>
+            </TouchableOpacity>
+          </>
+        )}
 
         <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text style={[globalStyle.subtext, styles.linkText]}>
-            Don't have an account? Sign up
+            Having trouble? Contact support
           </Text>
         </TouchableOpacity>
       </View>
