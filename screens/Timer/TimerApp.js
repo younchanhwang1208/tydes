@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Button, Image, TouchableOpacity, Dimensions, StyleSheet, Modal, TextInput, Animated } from 'react-native';
-import LinearGradient from "react-native-linear-gradient";
+import { View, Text, TouchableOpacity, Dimensions, StyleSheet, Modal, TextInput, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTabBarVisibility } from '../../components/TabBarVisibilityContext';
-
+import WaveAnimation from '../../components/WaveAnimation';
 
 const { width, height } = Dimensions.get('window');
 
@@ -11,7 +10,6 @@ const TimerApp = () => {
   const [time, setTime] = useState(180); // Default 3 minutes in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  // const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [hours, setHours] = useState('0');
   const [minutes, setMinutes] = useState('3');
   const timerPosition = useRef(new Animated.Value(0)).current;
@@ -19,88 +17,23 @@ const TimerApp = () => {
   const buttonOpacity = useRef(new Animated.Value(1)).current;
   const quitOpacity = useRef(new Animated.Value(0)).current;
   const quitPosition = useRef(new Animated.Value(0)).current;
-  const waveOpacity = useRef(new Animated.Value(0)).current;
-  const wavePosition1 = useRef(new Animated.Value(-430)).current;
-  const wavePosition2 = useRef(new Animated.Value(-430)).current;
-  const wavePosition3 = useRef(new Animated.Value(-430)).current;
-  const wavePosition4 = useRef(new Animated.Value(-430)).current;
   const [totalSeconds, setTotalSeconds] = useState(0);
 
-
-  const animateWave1 = Animated.loop(
-    Animated.sequence([
-      Animated.timing(wavePosition1, {
-        toValue: -1650,
-        duration: 6800,
-        useNativeDriver: true,
-      }),
-      Animated.timing(wavePosition1, {
-        toValue: -430,
-        duration: 6800,
-        useNativeDriver: true,
-      }),
-    ])
-  );
-  const animateWave2 = Animated.loop(
-    Animated.sequence([
-      Animated.timing(wavePosition2, {
-        toValue: -1650,
-        duration: 5450,
-        useNativeDriver: true,
-      }),
-      Animated.timing(wavePosition2, {
-        toValue: -430,
-        duration: 5450,
-        useNativeDriver: true,
-      }),
-    ])
-  );
-  const animateWave3 = Animated.loop(
-    Animated.sequence([
-      Animated.timing(wavePosition3, {
-        toValue: -1650,
-        duration: 3300,
-        useNativeDriver: true,
-      }),
-      Animated.timing(wavePosition3, {
-        toValue: -430,
-        duration: 3300,
-        useNativeDriver: true,
-      }),
-    ])
-  );
-  const animateWave4 = Animated.loop(
-    Animated.sequence([
-      Animated.timing(wavePosition4, {
-        toValue: -1650,
-        duration: 4850,
-        useNativeDriver: true,
-      }),
-      Animated.timing(wavePosition4, {
-        toValue: -430,
-        duration: 4850,
-        useNativeDriver: true,
-      }),
-    ])
-  );
-
-  
-
-  const { setHideTabBar } = useTabBarVisibility();  
+  const { setHideTabBar } = useTabBarVisibility();
   const navigation = useNavigation();
 
   useEffect(() => {
     let interval = null;
     if (isRunning && time > 0) {
       interval = setInterval(() => {
-        setTime(prevTime => prevTime - 1);
+        setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (time === 0) {
       clearInterval(interval);
       setIsRunning(false); // Stop running when timer reaches 0
       setHideTabBar(false);
 
-      navigation.navigate('Success', {secs: totalSeconds})
+      navigation.navigate('Success', { secs: totalSeconds });
     }
     return () => clearInterval(interval);
   }, [isRunning, time]);
@@ -123,25 +56,10 @@ const TimerApp = () => {
         useNativeDriver: true,
       }).start();
       Animated.timing(quitOpacity, {
-        toValue: 1, // Reset opacity to full
+        toValue: 1, // Show quit button
         duration: 1000,
         useNativeDriver: true,
       }).start();
-      Animated.timing(quitPosition, {
-        toValue: 250, 
-        duration: 10,
-        useNativeDriver: true,
-      }).start();
-      Animated.timing(waveOpacity,{
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
-      animateWave1.start();
-      animateWave2.start();
-      animateWave3.start();
-      animateWave4.start();
-
       setHideTabBar(true);
     } else {
       Animated.timing(timerPosition, {
@@ -160,21 +78,11 @@ const TimerApp = () => {
         useNativeDriver: true,
       }).start();
       Animated.timing(quitOpacity, {
-        toValue: 0, // Reset opacity to full
+        toValue: 0, // Hide quit button
         duration: 1000,
         useNativeDriver: true,
       }).start();
-      Animated.timing(quitPosition, {
-        toValue: 250, // Reset opacity to full
-        duration: 10,
-        useNativeDriver: true,
-      }).start();
-      Animated.timing(waveOpacity, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start()
-      setHideTabBar(false);    
+      setHideTabBar(false);
     }
   }, [isRunning]);
 
@@ -183,7 +91,7 @@ const TimerApp = () => {
     const seconds = time % 60;
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
-    if (hours == 0) {
+    if (hours === 0) {
       return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
     }
     return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
@@ -193,6 +101,7 @@ const TimerApp = () => {
     setTotalSeconds(time);
     setIsRunning(true);
   };
+
   const handleQuit = () => {
     setIsRunning(false);
     setTime(180); // Reset the timer back to default 3 minutes
@@ -219,6 +128,7 @@ const TimerApp = () => {
 
   return (
     <View style={timerStyles.container}>
+      <WaveAnimation isVisible={isRunning} />
 
       <Animated.View style={[timerStyles.timerContainer, { transform: [{ translateY: timerPosition }] }]}>
         <Text style={timerStyles.title}>Ride the Tyde!</Text>
@@ -227,48 +137,35 @@ const TimerApp = () => {
 
       <Animated.View style={{ opacity: buttonOpacity }}>
         <TouchableOpacity disabled={isRunning} onPress={handleOpenModal}>
-            <Text style={timerStyles.editText}>Tap to Edit</Text>
+          <Text style={timerStyles.editText}>Tap to Edit</Text>
         </TouchableOpacity>
       </Animated.View>
 
-        <Animated.View style={[timerStyles.startButton, { transform: [{ translateY: buttonPosition }] }]}>
-            <TouchableOpacity onPress={handleStart}>
-            <Text style={timerStyles.startButtonText}>Start</Text>
-            </TouchableOpacity>
-        </Animated.View>
-
-
-
-
-        <TouchableOpacity //temporary BUTTON
-            style={timerStyles.quitButton} 
-            onLongPress={() => setTime(0)}  // Pass a function reference using an arrow function
-            delayLongPress={1000}>
-          <Text>SKIP</Text>
+      <Animated.View style={[timerStyles.startButton, { transform: [{ translateY: buttonPosition }] }]}>
+        <TouchableOpacity onPress={handleStart}>
+          <Text style={timerStyles.startButtonText}>Start</Text>
         </TouchableOpacity>
+      </Animated.View>
 
-        <TouchableOpacity  disabled={!isRunning} style={timerStyles.quitButton}onLongPress={handleQuit}
-          delayLongPress={2500}>
-            <Animated.Text style={[timerStyles.quitButtonText, {transform: [{ translateY: quitPosition }], opacity: quitOpacity }]}>Hold to Quit Tyde</Animated.Text>
-        </TouchableOpacity>
+      <TouchableOpacity // Temporary SKIP button
+        style={timerStyles.quitButton}
+        onLongPress={() => setTime(0)}
+        delayLongPress={1000}>
+        <Text>SKIP</Text>
+      </TouchableOpacity>
 
+      <TouchableOpacity
+        disabled={!isRunning}
+        style={timerStyles.quitButton}
+        onLongPress={handleQuit}
+        delayLongPress={2500}>
+        <Animated.Text
+          style={[timerStyles.quitButtonText, { opacity: quitOpacity }]}
+        >
+          Hold to Quit Tyde
+        </Animated.Text>
+      </TouchableOpacity>
 
-        <>{/* WAVE */}
-        <Animated.View style={{transform: [{ translateX: wavePosition1 }], opacity: waveOpacity,}}>
-          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave1.png')} />
-        </Animated.View>
-        <Animated.View style={{transform: [{ translateX: wavePosition2 }], opacity: waveOpacity,}}>
-          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave2.png')} />
-        </Animated.View>
-        <Animated.View style={{transform: [{ translateX: wavePosition3 }], opacity: waveOpacity,}}>
-          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave3.png')} />
-        </Animated.View>
-        <Animated.View style={{transform: [{ translateX: wavePosition4 }], opacity: waveOpacity,}}>
-          <Image style={[timerStyles.bottomImage, {opacity: 0.5}]} resizeMode="cover" source={require('../../assets/images/tydeswave4.png')} />
-        </Animated.View>
-      </>
-      
-    
       {/* Modal for editing the timer */}
       <Modal
         animationType="slide"
@@ -286,16 +183,16 @@ const TimerApp = () => {
                 onChangeText={setHours}
                 keyboardType="numeric"
                 placeholder="Hours"
-                maxLength={2} // Limit input to two digits
+                maxLength={2}
               />
               <Text style={timerStyles.colon}>:</Text>
               <TextInput
                 style={timerStyles.input}
                 value={minutes}
-                onChangeText={value => setMinutes(value > 59 ? '59' : value)}
+                onChangeText={(value) => setMinutes(value > 59 ? '59' : value)}
                 keyboardType="numeric"
                 placeholder="Minutes"
-                maxLength={2} // Limit input to two digits
+                maxLength={2}
               />
             </View>
             <View style={timerStyles.modalButtons}>
