@@ -13,7 +13,7 @@ const WaveAnimation = ({ isVisible = true }) => {
   const animateWave1 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition1, {
-        toValue: -1650,
+        toValue: -1450,
         duration: 6800,
         useNativeDriver: true,
       }),
@@ -28,7 +28,7 @@ const WaveAnimation = ({ isVisible = true }) => {
   const animateWave2 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition2, {
-        toValue: -1650,
+        toValue: -1500,
         duration: 5450,
         useNativeDriver: true,
       }),
@@ -43,7 +43,7 @@ const WaveAnimation = ({ isVisible = true }) => {
   const animateWave3 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition3, {
-        toValue: -1650,
+        toValue: -1550,
         duration: 3300,
         useNativeDriver: true,
       }),
@@ -58,7 +58,7 @@ const WaveAnimation = ({ isVisible = true }) => {
   const animateWave4 = Animated.loop(
     Animated.sequence([
       Animated.timing(wavePosition4, {
-        toValue: -1650,
+        toValue: -1550,
         duration: 4850,
         useNativeDriver: true,
       }),
@@ -69,6 +69,7 @@ const WaveAnimation = ({ isVisible = true }) => {
       }),
     ])
   );
+
 
   useEffect(() => {
     if (isVisible) {
@@ -91,19 +92,44 @@ const WaveAnimation = ({ isVisible = true }) => {
     }
   }, [isVisible]);
 
+  const getWaveColor = () => { //wave color changes based on time of day  
+    const hour = new Date().getHours();
+    
+    // Night (9 PM - 4 AM)
+    if (hour >= 21 || hour < 4) {
+      return '#1a237e'; // Dark blue
+    }
+    // Sunrise (4 AM - 7 AM)
+    else if (hour >= 4 && hour < 7) {
+      return '#ffd700'; // Golden yellow
+    }
+    // Morning (7 AM - 11 AM)
+    else if (hour >= 7 && hour < 11) {
+      return '#87ceeb'; // Light blue
+    }
+    // Midday (11 AM - 4 PM)
+    else if (hour >= 11 && hour < 16) {
+      return '#4fc3f7'; // Sky blue
+    }
+    // Sunset (4 PM - 9 PM)
+    else {
+      return '#ff8c00'; // Dark golden
+    }
+  };
+
   return (
     <>
       <Animated.View style={[styles.waveContainer, { transform: [{ translateX: wavePosition1 }], opacity: waveOpacity }]}>
-        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave1.png')} />
+        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave1.png')} tintColor={getWaveColor()} />
       </Animated.View>
       <Animated.View style={[styles.waveContainer, { transform: [{ translateX: wavePosition2 }], opacity: waveOpacity }]}>
-        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave2.png')} />
+        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave2.png')} tintColor={getWaveColor()}/>
       </Animated.View>
       <Animated.View style={[styles.waveContainer, { transform: [{ translateX: wavePosition3 }], opacity: waveOpacity }]}>
-        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave3.png')} />
+        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave3.png')} tintColor={getWaveColor()}/>
       </Animated.View>
       <Animated.View style={[styles.waveContainer, { transform: [{ translateX: wavePosition4 }], opacity: waveOpacity }]}>
-        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave4.png')} />
+        <Image style={[styles.wave, { opacity: 0.5 }]} resizeMode="cover" source={require('../assets/images/tydeswave4.png')} tintColor={getWaveColor()}/>
       </Animated.View>
     </>
   );
