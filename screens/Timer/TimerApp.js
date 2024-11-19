@@ -160,7 +160,7 @@ const TimerApp = () => {
         onLongPress={handleQuit}
         delayLongPress={2500}>
         <Animated.Text
-          style={[timerStyles.quitButtonText, { opacity: quitOpacity }]}
+          style={[timerStyles.quitButtonText, { opacity: quitOpacity}]}
         >
           Hold to Quit Tyde
         </Animated.Text>
